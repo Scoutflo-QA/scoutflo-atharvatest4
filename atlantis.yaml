@@ -6,6 +6,10 @@ delete_source_branch_on_merge: true
 parallel_plan: true
 parallel_apply: true
 abort_on_execution_order_fail: true
+
+repo-allowlist: 
+  - "github.com/Scoutflo-QA/*"
+
 projects:
 - name: my-project-name
   branch: /main/
@@ -20,8 +24,6 @@ projects:
   autoplan:
     when_modified: ["*.tf", "../modules/**/*.tf", ".terraform.lock.hcl"]
     enabled: true
-  repo-allowlist: 
-  - "github.com/Scoutflo-QA/*"
   plan_requirements: [mergeable, approved, undiverged]
   apply_requirements: [mergeable, approved, undiverged]
   import_requirements: [mergeable, approved, undiverged]

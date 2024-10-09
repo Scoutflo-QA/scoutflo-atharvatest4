@@ -20,6 +20,8 @@ projects:
   autoplan:
     when_modified: ["*.tf", "../modules/**/*.tf", ".terraform.lock.hcl"]
     enabled: true
+  repo-allowlist: 
+  - "github.com/Scoutflo-QA/scoutflo-atharvatest4"
   plan_requirements: [mergeable, approved, undiverged]
   apply_requirements: [mergeable, approved, undiverged]
   import_requirements: [mergeable, approved, undiverged]

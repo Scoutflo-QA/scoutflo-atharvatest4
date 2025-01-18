@@ -1,0 +1,78 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: atharvadeploytesting8
+  namespace: default
+  labels:
+    app: atharvadeploytesting8
+spec:
+  type: ClusterIP
+  selector:
+    app: atharvadeploytesting8
+  ports:
+    - name: ftp
+      protocol: FTP
+      port: 80
+      targetPort: 80
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: atharvadeploytesting8
+  namespace: default
+  labels:
+    app: atharvadeploytesting8
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: atharvadeploytesting8
+  template:
+    metadata:
+      labels:
+        app: atharvadeploytesting8
+    spec:
+      containers:
+        - name: atharvadeploytesting8-container
+          image: 891376929531.dkr.ecr.ap-south-1.amazonaws.com//cost-analyzer-atharva1889-tfucl:latest
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: 64Mi
+              cpu: 250m
+            limits:
+              memory: 128Mi
+              cpu: 500m
+          env:
+            - name: NODE_ENV
+              value: production
+      imagePullSecrets:
+        - name: scoutflo-atharva-ecr-aws-ecr
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: atharvadeploytesting8
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  rules:
+    - host: atharva-s4-fnfhi.scoutflo.agency
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: atharvadeploytesting8
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - atharva-s4-fnfhi.scoutflo.agency
+      secretName: scoutflo-agency-wildcard-tls

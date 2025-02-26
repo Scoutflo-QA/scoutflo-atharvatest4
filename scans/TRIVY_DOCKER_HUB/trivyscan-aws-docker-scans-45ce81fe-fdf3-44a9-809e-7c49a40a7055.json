@@ -1,0 +1,121 @@
+{
+  "SchemaVersion": 2,
+  "CreatedAt": "2025-02-26T12:34:37.56249009Z",
+  "ArtifactName": "scoutflo/k8-dashboard:pre-prod-55",
+  "ArtifactType": "container_image",
+  "Metadata": {
+    "OS": {
+      "Family": "alpine",
+      "Name": "3.21.2"
+    },
+    "ImageID": "sha256:f24c90cd8984f1545e844f1353727fa95a31d303ac64f333cee7e4fb86c1c23c",
+    "DiffIDs": [
+      "sha256:a0904247e36a7726c03c71ee48f3e64462021c88dafeb13f37fdaf613b27f11c",
+      "sha256:2c13c98e7aad9d67b8e46e63dd50289d0eb96f1eb5d500a19758c7281e050df6",
+      "sha256:cac7a10e0d0087a193fa64138c535032ce0d2bdce41a62903b5b22bd21876263",
+      "sha256:f694a864c3f947326f44aa55077fc262738098af5e80c7628e1eba543876bdac"
+    ],
+    "RepoTags": [
+      "scoutflo/k8-dashboard:pre-prod-55"
+    ],
+    "RepoDigests": [
+      "scoutflo/k8-dashboard@sha256:f94feb2c18ffd17d3edca6a58a21c2c31b902702b58e34c4513bfb2d216ff4cb"
+    ],
+    "ImageConfig": {
+      "architecture": "amd64",
+      "created": "2025-02-07T14:01:35.858747171Z",
+      "history": [
+        {
+          "created": "2025-01-08T12:07:30Z",
+          "created_by": "ADD alpine-minirootfs-3.21.2-x86_64.tar.gz / # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2025-01-08T12:07:30Z",
+          "created_by": "CMD [\"/bin/sh\"]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2025-02-07T09:20:07.081651886Z",
+          "created_by": "RUN /bin/sh -c apk add --no-cache bash libc6-compat # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2025-02-07T14:01:35.667485532Z",
+          "created_by": "COPY /k8-dashboard /k8-dashboard # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2025-02-07T14:01:35.858747171Z",
+          "created_by": "COPY /usr/local/bin/opa /usr/local/bin/opa # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2025-02-07T14:01:35.858747171Z",
+          "created_by": "EXPOSE map[8080/tcp:{}]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2025-02-07T14:01:35.858747171Z",
+          "created_by": "CMD [\"/k8-dashboard\"]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        }
+      ],
+      "os": "linux",
+      "rootfs": {
+        "type": "layers",
+        "diff_ids": [
+          "sha256:a0904247e36a7726c03c71ee48f3e64462021c88dafeb13f37fdaf613b27f11c",
+          "sha256:2c13c98e7aad9d67b8e46e63dd50289d0eb96f1eb5d500a19758c7281e050df6",
+          "sha256:cac7a10e0d0087a193fa64138c535032ce0d2bdce41a62903b5b22bd21876263",
+          "sha256:f694a864c3f947326f44aa55077fc262738098af5e80c7628e1eba543876bdac"
+        ]
+      },
+      "config": {
+        "Cmd": [
+          "/k8-dashboard"
+        ],
+        "Env": [
+          "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+        ],
+        "Labels": {
+          "maintainer": "codewithdpk",
+          "org.opencontainers.image.created": "2025-02-07T14:02:37.667Z",
+          "org.opencontainers.image.description": "\"Docker image for Scoutflo/K8s-Dashboard\"",
+          "org.opencontainers.image.documentation": "git://github.com/Scoutflo/K8s-Dashboard.git/blob/release/dev/README.md",
+          "org.opencontainers.image.licenses": "MIT",
+          "org.opencontainers.image.revision": "6959179a6d00d27438cdd46b6c8fdf1e2033c523",
+          "org.opencontainers.image.source": "git://github.com/Scoutflo/K8s-Dashboard.git",
+          "org.opencontainers.image.title": "Scoutflo/K8s-Dashboard",
+          "org.opencontainers.image.url": "https://github.com/Scoutflo/K8s-Dashboard",
+          "org.opencontainers.image.version": "pre-prod-55"
+        },
+        "WorkingDir": "/",
+        "ExposedPorts": {
+          "8080/tcp": {}
+        },
+        "ArgsEscaped": true
+      }
+    }
+  },
+  "Results": [
+    {
+      "Target": "scoutflo/k8-dashboard:pre-prod-55 (alpine 3.21.2)",
+      "Class": "os-pkgs",
+      "Type": "alpine"
+    },
+    {
+      "Target": "k8-dashboard",
+      "Class": "lang-pkgs",
+      "Type": "gobinary"
+    },
+    {
+      "Target": "usr/local/bin/opa",
+      "Class": "lang-pkgs",
+      "Type": "gobinary"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: scoutflo-sa-vedtestecr
+  namespace: elkstacktest
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::891376929531:role/Scoutflo-cloud-credentials-28ba5604-9ed5-4bb6-87a9-798a4d1a48d6
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vedtestecr
+  namespace: elkstacktest
+  labels:
+    app: vedtestecr
+spec:
+  type: ClusterIP
+  selector:
+    app: vedtestecr
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 80
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vedtestecr
+  namespace: elkstacktest
+  labels:
+    app: vedtestecr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vedtestecr
+  template:
+    metadata:
+      labels:
+        app: vedtestecr
+    spec:
+      serviceAccountName: scoutflo-sa-vedtestecr
+      containers:
+        - name: vedtestecr-container
+          image: 891376929531.dkr.ecr.ap-south-1.amazonaws.com/workflow-scripts:latest
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: 512Mi
+              cpu: 200m
+            limits:
+              memory: 1024Mi
+              cpu: 500m
+          env:
+            - name: NODE_ENV
+              value: production
